@@ -91,7 +91,7 @@ class DataAnalysis:
         axes[2].set_title('Box Plot for BND',fontsize=14, fontweight='bold')
         axes[2].set_ylabel('Adj Close',fontsize=12, fontweight='bold')
 
-    def seasonal_decomposition(self):
+    def seasonal_decomposition_tsla(self):
         #Seasonal Decomposition
         decompose = seasonal_decompose(self.df_tsla['Close'], model='multiplicative',period=252)
 
@@ -105,22 +105,92 @@ class DataAnalysis:
         # Plot the observed data
         ax1.plot(self.df_tsla['Close'], label='Observed', color='blue')
         ax1.legend(loc='upper left')
-        ax1.set_title('Observed',fontsize=12, fontweight='bold')
+        ax1.set_title('Observed (TSLA)',fontsize=12, fontweight='bold')
 
         # Plot the trend component
         ax2.plot(trend, label='Trend', color='orange')
         ax2.legend(loc='upper left')
-        ax2.set_title('Trend',fontsize=12, fontweight='bold')
+        ax2.set_title('Trend (TSLA)',fontsize=12, fontweight='bold')
 
         # Plot the seasonal component
         ax3.plot(seasonal, label='Seasonal', color='green')
         ax3.legend(loc='upper left')
-        ax3.set_title('Seasonal',fontsize=12, fontweight='bold')
+        ax3.set_title('Seasonal (TSLA)',fontsize=12, fontweight='bold')
 
         # Plot the residual component
         ax4.plot(resid, label='Residual', color='red')
         ax4.legend(loc='upper left')
-        ax4.set_title('Residual',fontsize=12, fontweight='bold')
+        ax4.set_title('Residual (TSLA)',fontsize=12, fontweight='bold')
+
+        # Adjust layout and display
+        plt.tight_layout()
+        plt.show()
+
+    def seasonal_decomposition_sp(self):
+        #Seasonal Decomposition
+        decompose = seasonal_decompose(self.df_sp['Close'], model='multiplicative',period=252)
+
+        trend = decompose.trend
+        seasonal = decompose.seasonal
+        resid = decompose.resid
+
+        # Create a figure and subplots
+        fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(12, 8))
+
+        # Plot the observed data
+        ax1.plot(self.df_sp['Close'], label='Observed', color='blue')
+        ax1.legend(loc='upper left')
+        ax1.set_title('Observed (SPY)',fontsize=12, fontweight='bold')
+
+        # Plot the trend component
+        ax2.plot(trend, label='Trend', color='orange')
+        ax2.legend(loc='upper left')
+        ax2.set_title('Trend (SPY)',fontsize=12, fontweight='bold')
+
+        # Plot the seasonal component
+        ax3.plot(seasonal, label='Seasonal', color='green')
+        ax3.legend(loc='upper left')
+        ax3.set_title('Seasonal (SPY)',fontsize=12, fontweight='bold')
+
+        # Plot the residual component
+        ax4.plot(resid, label='Residual', color='red')
+        ax4.legend(loc='upper left')
+        ax4.set_title('Residual (SPY)',fontsize=12, fontweight='bold')
+
+        # Adjust layout and display
+        plt.tight_layout()
+        plt.show()
+
+    def seasonal_decomposition_bnd(self):
+        #Seasonal Decomposition
+        decompose = seasonal_decompose(self.df_bnd['Close'], model='multiplicative',period=252)
+
+        trend = decompose.trend
+        seasonal = decompose.seasonal
+        resid = decompose.resid
+
+        # Create a figure and subplots
+        fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(12, 8))
+
+        # Plot the observed data
+        ax1.plot(self.df_bnd['Close'], label='Observed', color='blue')
+        ax1.legend(loc='upper left')
+        ax1.set_title('Observed (BND)',fontsize=12, fontweight='bold')
+
+        # Plot the trend component
+        ax2.plot(trend, label='Trend', color='orange')
+        ax2.legend(loc='upper left')
+        ax2.set_title('Trend (BND)',fontsize=12, fontweight='bold')
+
+        # Plot the seasonal component
+        ax3.plot(seasonal, label='Seasonal', color='green')
+        ax3.legend(loc='upper left')
+        ax3.set_title('Seasonal (BND)',fontsize=12, fontweight='bold')
+
+        # Plot the residual component
+        ax4.plot(resid, label='Residual', color='red')
+        ax4.legend(loc='upper left')
+        ax4.set_title('Residual (BND)',fontsize=12, fontweight='bold')
 
         # Adjust layout and display
         plt.tight_layout()
